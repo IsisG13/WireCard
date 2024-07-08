@@ -1,0 +1,118 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+h1 {
+    text-align: center;
+    color: #ff7979;
+}
+
+p {
+    color: #ff7979;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 8%;
+}
+
+
+.typeCard {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.radio-label {
+    display: inline-block;
+    padding: 10px 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #ffcaca;
+    color: #833333;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    margin-right: 10px;
+}
+
+.radio-label:hover {
+    background-color: #f56b6b;
+}
+
+label {
+    font-weight: bold;
+    color: #ff8f8f;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="radio"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+input[type="radio"] {
+    width: auto;
+    margin-right: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #ffc4c4;
+    color: #752323;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #f79b97;
+}
+
+.dados {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.msg,
+.n-msg {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #e9f6e9;
+    border: 1px solid #d4eed4;
+    border-radius: 5px;
+    color: #5a1b1b;
+    text-align: center;
+}
+
+.n-msg {
+    background-color: #ffc4c4;
+    border-color: #ccc;
+    color: #743434;
+}
+
