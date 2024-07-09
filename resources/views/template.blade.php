@@ -21,6 +21,7 @@
                     delimiters: ['${', '}'],
                     data() {
                         return {
+                            client_id: this.getClientIdFromURL(),
                             amount: '',
                             formaPagamento: '',
                             card_number: '',
@@ -33,6 +34,10 @@
                         }
                     },
                     methods: {
+                        getClientIdFromURL() {
+                            const urlParams = new URLSearchParams(window.location.search);
+                            return urlParams.get('client_id');
+                        },
                         handleInitialSubmit() {
                             const csrfToken = document.querySelector('input[name="_token"]').value;
                             if (this.formaPagamento === 'boleto') {
@@ -49,7 +54,7 @@
                                         'X-CSRF-TOKEN': csrfToken
                                     },
                                     body: JSON.stringify({
-                                        client_id: 1, // ID do cliente definido como 1
+                                        client_id: this.client_id, // Pega o ID do cliente
                                         amount: this.amount,
                                         type: 'boleto'
                                     })
@@ -57,17 +62,11 @@
                                 .then(response => response.json())
                                 .then(data => {
                                     this.boletoNumber = data.boleto_number; // Mostra o número do boleto
-                                    // setTimeout(() => {
-                                    //     this.boletoNumber = '';
-                                    //     this.amount = '';
-                                    //     this.formaPagamento = '';
-                                    // }, 2000);
                                 })
                                 .catch(error => {
                                     console.error('Erro ao gerar boleto:', error);
                                 });
                         },
-
                         submitCartao() {
                             const csrfToken = document.querySelector('input[name="_token"]').value;
                             fetch('/pagamento', {
@@ -77,7 +76,7 @@
                                         'X-CSRF-TOKEN': csrfToken
                                     },
                                     body: JSON.stringify({
-                                        client_id: 1, // ID do cliente definido como 1
+                                        client_id: this.client_id,
                                         amount: this.amount,
                                         type: 'cartao',
                                         card_number: this.card_number,

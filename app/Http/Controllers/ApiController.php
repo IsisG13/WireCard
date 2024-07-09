@@ -67,7 +67,7 @@ class ApiController extends Controller
                 'status' => 'paid',
             ]);
 
-            return response()->json(['message' => 'Pagamento realizado com sucesso!'], 201);
+        return response()->json(['message' => 'Pagamento realizado com sucesso!'], 201);
         } else {
             return response()->json(['error' => 'Invalid payment type'], 400);
         }
@@ -125,14 +125,18 @@ class ApiController extends Controller
             'email' => 'required|string|email|max:255|unique:clients',
             'cpf' => 'required|string|max:14|unique:clients',
         ]);
-
+    
         $cliente = Client::create([
             'nome' => $request->input('nome'),
             'email' => $request->input('email'),
             'cpf' => $request->input('cpf'),
         ]);
 
-        return redirect('/pagamento')->with('client_id', $cliente->id);
+        if ($cliente) {
+            return response()->json(['message' => 'Login realizado com sucesso!', 'client_id' => $cliente->id, 'redirect_url' => '/?client_id=' . $cliente->id], 201);
+        } else {
+            return response()->json(['message' => 'Erro ao realizar login!'], 500);
+        }
     }
 
     // public function postCliente(Request $request)

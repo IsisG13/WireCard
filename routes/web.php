@@ -18,6 +18,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/login', function() {
+    return view('login');
+});
+
+Route::post('/login', [ApiController::class, 'postCliente']);
+
 Route::get('/clientes', [ApiController::class, 'getClientes']);
 Route::get('/pagamentos', [ApiController::class, 'getPagamentos']);
 Route::post('/pagamento', [ApiController::class, 'postPagamento']);

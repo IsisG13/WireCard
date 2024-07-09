@@ -2,6 +2,9 @@
 
 @section('content')
     <div>
+        <a href="/login" class="button-login">
+            <button>Login</button>
+        </a>
         <h1>Bem vindos a WireCard</h1>
         <p>Preencha seus dados de usuário e faça seu pagamento.</p>
         <div id="payment-form">
@@ -32,17 +35,17 @@
             <div v-if="formaPagamento === 'cartao' && showCardForm">
                 <form @submit.prevent="submitCartao">
                     <div class="form">
-                            <label for="card_number">Número do Cartão:</label>
-                            <input type="text" id="card_number" v-model="card_number" required><br>
+                        <label for="card_number">Número do Cartão:</label>
+                        <input type="text" id="card_number"  v-model="card_number" required><br>
 
-                            <label for="card_name">Nome no Cartão:</label>
-                            <input type="text" id="card_name" v-model="card_name" required><br>
+                        <label for="card_name">Nome no Cartão:</label>
+                        <input type="text" id="card_name" v-model="card_name" required><br>
 
-                            <label for="card_cvv">CVV:</label>
-                            <input type="text" id="card_cvv" v-model="card_cvv" required><br>
+                        <label for="card_cvv">CVV:</label>
+                        <input type="text" id="card_cvv" v-model="card_cvv" required><br>
 
-                            <label for="card_expiration">Data de Validade:</label>
-                            <input type="text" id="card_expiration" v-model="card_expiration" required><br>
+                        <label for="card_expiration">Data de Validade:</label>
+                        <input type="date" id="card_expiration" v-model="card_expiration" required><br>
 
                         <button type="submit">Enviar Pagamento</button>
                     </div>
