@@ -16,11 +16,15 @@ main {
 
 h1 {
     text-align: center;
-    color: #ff7979;
+    color: #813a3a;
+    text-shadow: 0 0 10px rgb(255 26 0 / 45%);
 }
 
 p {
-    color: #ff7979;
+    color: #813a3a;
+    font-weight: bold;
+    font-size: 94%;
+    margin-top: -2%;
 }
 
 form {
@@ -28,6 +32,7 @@ form {
     flex-direction: column;
     gap: 15px;
     margin-bottom: 8%;
+    margin-top: 4%;
 }
 
 
@@ -42,7 +47,7 @@ form {
     padding: 10px 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    background-color: #ffcaca;
+    background-color: #ffe5e5;
     color: #833333;
     cursor: pointer;
     transition: background-color 0.3s ease, color 0.3s ease;
@@ -50,20 +55,21 @@ form {
 }
 
 .radio-label:hover {
-    background-color: #f56b6b;
+    background-color: #ffc7c7;
 }
 
 label {
     font-weight: bold;
-    color: #ff8f8f;
+    color: #813a3a;
 }
 
 input[type="text"],
 input[type="number"],
 input[type="email"],
+input[type="date"],
 input[type="radio"] {
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid #582121;
     border-radius: 5px;
     font-size: 16px;
 }
@@ -77,15 +83,16 @@ button {
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
-    background-color: #ffc4c4;
-    color: #752323;
+    background-color: #ffe5e5;
+    color: #833333;
     font-size: 16px;
+    font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
 button:hover {
-    background-color: #f79b97;
+    background-color: #ffc7c7;
 }
 
 .dados {
@@ -100,21 +107,27 @@ button:hover {
     gap: 10px;
 }
 
-.msg,
-.n-msg {
+.msg {
     margin-top: 20px;
     padding: 15px;
     background-color: #e9f6e9;
     border: 1px solid #d4eed4;
     border-radius: 5px;
-    color: #5a1b1b;
+    color: #833333;
+    font-weight: bold;
     text-align: center;
 }
 
 .n-msg {
-    background-color: #ffc4c4;
+    cursor: pointer;
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #ffe5e5;
+    border-radius: 5px;
     border-color: #ccc;
     color: #743434;
+    display: flex;
+    justify-content: center;
 }
 
 .button-login {

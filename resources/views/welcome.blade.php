@@ -3,16 +3,17 @@
 @section('content')
     <div>
         <a href="/login" class="button-login">
-            <button>Login</button>
+            <button>Entrar</button>
         </a>
         <h1>Bem vindos a WireCard</h1>
-        <p>Preencha seus dados de usuário e faça seu pagamento.</p>
+        <p>Para evitar erros no pagamento, faça seu login antes!</p>
+        <p>Preencha os campos abaixo e faça seu pagamento.</p>
         <div id="payment-form">
             <form id="payment-initial-form" @submit.prevent="handleInitialSubmit">
                 @csrf <!-- Diretiva do Blade para gerar o token CSRF -->
                 <div class="dados">
                     <label for="amount">Valor para pagar:</label>
-                    <input type="number" id="amount" v-model="amount" required><br>
+                    <input placeholder="Ṛ$: " type="number" id="amount" v-model="amount" required><br>
 
                     <label for="type">Forma de pagamento:</label><br>
                     <div class="typeCard">
@@ -29,20 +30,20 @@
             </form>
 
             <div v-if="formaPagamento === 'boleto' && boletoNumber" class="n-msg">
-                <p>Número do Boleto: ${boletoNumber}</p>
+                <p class="n-msg">Número do Boleto: ${boletoNumber}</p>
             </div>
 
             <div v-if="formaPagamento === 'cartao' && showCardForm">
                 <form @submit.prevent="submitCartao">
                     <div class="form">
                         <label for="card_number">Número do Cartão:</label>
-                        <input type="text" id="card_number"  v-model="card_number" required><br>
+                        <input placeholder="16 números" minlength="16" type="number" id="card_number"  v-model="card_number" required><br>
 
                         <label for="card_name">Nome no Cartão:</label>
-                        <input type="text" id="card_name" v-model="card_name" required><br>
+                        <input placeholder="Ex: Ello" type="text" id="card_name" v-model="card_name" required><br>
 
                         <label for="card_cvv">CVV:</label>
-                        <input type="text" id="card_cvv" v-model="card_cvv" required><br>
+                        <input placeholder="3 números" minlength="4" type="number" id="card_cvv" v-model="card_cvv" required><br>
 
                         <label for="card_expiration">Data de Validade:</label>
                         <input type="date" id="card_expiration" v-model="card_expiration" required><br>

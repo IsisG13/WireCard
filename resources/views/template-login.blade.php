@@ -46,12 +46,15 @@
                                 .then(data => {
                                     if (data.client_id) {
                                         window.location.href = `/?client_id=${data.client_id}`;
-                                    } else {
                                         this.messageLogin = data.message;
+
+                                    } else {
+                                        this.messageLogin = "Erro ao fazer login";
                                     }
                                 })
                                 .catch(error => {
                                     console.error('Erro ao fazer login:', error);
+                                    this.messageLogin = "Erro ao fazer login";
                                 });
                         }
                     }

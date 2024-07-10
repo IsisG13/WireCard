@@ -3,19 +3,19 @@
 @section('content')
     <div>
         <h1>Login</h1>
-        <p>Faça o login para realizar seu pagamento!</p>
+        <p>Preencha seus dados de usuário e faça seu pagamento.</p>
         <div id="login-form">
             <form id="login-initial-form" @submit.prevent="handleLogin">
                 @csrf <!-- Diretiva do Blade para gerar o token CSRF -->
                 <div class="dados">
                     <label for="nome">Nome do Cliente:</label>
-                    <input type="text" id="nome" v-model="nome" required><br>
+                    <input placeholder="Ex: Maria" type="text" id="nome" v-model="nome" required><br>
 
                     <label for="email">Email do Cliente:</label><br>
-                    <input type="email" id="email" v-model="email" required><br>
+                    <input placeholder="maria@teste" type="email" id="email" v-model="email" required><br>
 
                     <label for="cpf">CPF do Cliente:</label><br>
-                    <input type="number" id="cpf" v-model="cpf" required><br>
+                    <input placeholder="11 números" minlength="11" type="number" id="cpf" v-model="cpf" required><br>
 
                     <button type="submit">Logar</button>
                 </div>

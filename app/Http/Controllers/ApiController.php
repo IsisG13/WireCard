@@ -119,36 +119,73 @@ class ApiController extends Controller
     }
 
     public function postCliente(Request $request)
-    {
-        $request->validate([
-            'nome' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:clients',
-            'cpf' => 'required|string|max:14|unique:clients',
-        ]);
-    
+{
+    // Valida os dados recebidos
+    $request->validate([
+        'nome' => 'required|string|max:255',
+        'email' => 'required|string|email|max:255',
+        'cpf' => 'required|string|max:14',
+    ]);
+
+    // Verifica se cliente já existe pelo CPF ou email
+    $cliente = Client::where('cpf', $request->cpf)
+                     ->orWhere('email', $request->email)
+                     ->first();
+
+    if ($cliente) {
+        // Se cliente já existe, retorna com sucesso
+        return response()->json([
+            'message' => 'Login realizado com sucesso!',
+            'client_id'=> $cliente->id,
+            'redirect_url' => '/?client_id=' . $cliente->id
+        ], 200);
+    } else {
+        // Cria um novo cliente se não existir
         $cliente = Client::create([
             'nome' => $request->input('nome'),
             'email' => $request->input('email'),
             'cpf' => $request->input('cpf'),
         ]);
 
-        if ($cliente) {
-            return response()->json(['message' => 'Login realizado com sucesso!', 'client_id' => $cliente->id, 'redirect_url' => '/?client_id=' . $cliente->id], 201);
-        } else {
-            return response()->json(['message' => 'Erro ao realizar login!'], 500);
-        }
+        return response()->json([
+            'message' => 'Cliente criado com sucesso!',
+            'client_id' => $cliente->id,
+            'redirect_url' => '/?client_id=' . $cliente->id
+        ], 201);
     }
+}
+
 
     // public function postCliente(Request $request)
     // {
-    //     $clientes = Client::create([
-    //         'nome' => $request->input('nome'),
-    //         'email' => $request->input('email'),
-    //         'cpf' => $request->input('cpf'),
+    //     $request->validate([
+    //         'nome' => 'required|string|max:255',
+    //         'email' => 'required|string|email|max:255|unique:clients',
+    //         'cpf' => 'required|string|max:14|unique:clients',
     //     ]);
 
-    //     return view('welcome', ['cliente' => $clientes->id]);
-    //     // return response()->json(['message' => 'Cliente criado com sucesso', 'cliente' => $cliente], 201);
+    //     // Verifica se cliente ja existe
+    //     $cliente = Client::where('cpf', $request->cpf)->orWhere('email', $request->email)->first();
+
+    //     if ($cliente) {
+    //         return response()->json([
+    //             'message' => 'Login realizado com sucesso!',
+    //             'client_id'=> $cliente->id,
+    //             'redirect_url' => '/?client_id=' . $cliente->id
+    //         ], 200);
+    //     } else {
+    //         $cliente = Client::create([
+    //             'nome' => $request->input('nome'),
+    //             'email' => $request->input('email'),
+    //             'cpf' => $request->input('cpf'),
+    //         ]);
+    //     }
+
+    //     if ($cliente) {
+    //         return response()->json(['message' => 'Cliente criado com sucesso!', 'client_id' => $cliente->id, 'redirect_url' => '/?client_id=' . $cliente->id], 201);
+    //     } else {
+    //         return response()->json(['message' => 'Erro ao realizar login!'], 500);
+    //     }
     // }
     
     public function updateCliente(Request $request, $id)
