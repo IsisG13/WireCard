@@ -62,16 +62,10 @@
                                 .then(response => response.json())
                                 .then(data => {
                                     this.boletoNumber = data.boleto_number; // Mostra o número do boleto
-                                    // setTimeout(() => {
-                                    //     this.boletoNumber = '';
-                                    // }, 10000);
-                                    // this.amount = '';
-                                    // this.formaPagamento = '';
-                                    // this.card_name = '';
-                                    // this.card_number = '';
-                                    // this.card_cvv = '';
-                                    // this.card_expiration = '';
-                                    // window.location.href = '/';
+                                    setTimeout(() => {
+                                        this.boletoNumber = '';
+                                    }, 60000);
+                                    window.location.href = '/';
                                 })
                                 .catch(error => {
                                     console.error('Erro ao gerar boleto:', error);
@@ -101,7 +95,7 @@
                                     this.paymentSuccessMessage = data.message;
                                     setTimeout(() => {
                                         this.paymentSuccessMessage = '';
-                                    }, 10000);
+                                    }, 60000);
                                     this.amount = '';
                                     this.formaPagamento = '';
                                     this.card_name = '';
