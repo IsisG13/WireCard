@@ -30,7 +30,8 @@
                             card_expiration: '',
                             boletoNumber: '',
                             showCardForm: false,
-                            paymentSuccessMessage: ''
+                            paymentSuccessMessage: '',
+                            erroMessage: ''
                         }
                     },
                     methods: {
@@ -40,10 +41,15 @@
                         },
                         handleInitialSubmit() {
                             const csrfToken = document.querySelector('input[name="_token"]').value;
-                            if (this.formaPagamento === 'boleto') {
-                                this.fetchBoleto(csrfToken);
-                            } else if (this.formaPagamento === 'cartao') {
-                                this.showCardForm = true;
+                            if (!this.client_id) {
+                                this.erroMessage = "Faça login para realizar seu pagamento!";
+                                return;
+                            } else {
+                                if (this.formaPagamento === 'boleto') {
+                                    this.fetchBoleto(csrfToken);
+                                } else if (this.formaPagamento === 'cartao') {
+                                    this.showCardForm = true;
+                                }
                             }
                         },
                         fetchBoleto(csrfToken) {
@@ -95,7 +101,7 @@
                                     this.paymentSuccessMessage = data.message;
                                     setTimeout(() => {
                                         this.paymentSuccessMessage = '';
-                                    }, 60000);
+                                    }, 50000);
                                     this.amount = '';
                                     this.formaPagamento = '';
                                     this.card_name = '';

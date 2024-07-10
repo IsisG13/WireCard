@@ -3,7 +3,7 @@
 @section('content')
     <div>
         <a href="/login" class="button-login">
-            <button>Entrar</button>
+            <button>Login</button>
         </a>
         <h1>Bem vindos a WireCard</h1>
         <p>Para evitar erros no pagamento, faça seu login antes!</p>
@@ -56,6 +56,10 @@
 
             <div v-if="paymentSuccessMessage" class="msg">
                 <h3>${paymentSuccessMessage}</h3>
+            </div>
+
+            <div v-if="erroMessage" class="error-msg">
+                <h3>${ erroMessage }</h3>
             </div>
         </div>
     </div>

@@ -128,9 +128,7 @@ class ApiController extends Controller
     ]);
 
     // Verifica se cliente já existe pelo CPF ou email
-    $cliente = Client::where('cpf', $request->cpf)
-                     ->orWhere('email', $request->email)
-                     ->first();
+    $cliente = Client::where('cpf', $request->cpf)->orWhere('email', $request->email)->first();
 
     if ($cliente) {
         // Se cliente já existe, retorna com sucesso
